@@ -3,6 +3,9 @@
 (function () {
   var GA_ID = "G-JFCEXBGL26";
 
+  // 다른 스크립트가 안전하게 호출하는 이벤트 함수 (GA가 꺼져 있어도 오류 없음)
+  window.track = function () {};
+
   if (!/^G-[A-Z0-9]{6,}$/.test(GA_ID)) return;
   // 브라우저의 추적 금지(DNT) 설정을 존중
   if (navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
@@ -10,6 +13,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
+  window.track = function (name, params) { gtag("event", name, params || {}); };
   gtag("js", new Date());
   gtag("config", GA_ID);
 

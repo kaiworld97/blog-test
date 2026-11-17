@@ -84,7 +84,7 @@
     }
   }
 
-  function postCard(p, { manage = false, onDelete } = {}) {
+  function postCard(p, { manage = false, onDelete, position } = {}) {
     const badges = h("div", { class: "badges" },
       h("span", { class: "pill", text: p.category }),
       p.visibility === "private" ? h("span", { class: "pill lock", text: "🔒 나만보기" }) : h("span", { class: "pill pub", text: "공개" }));
@@ -93,6 +93,10 @@
       h("h3", { text: p.title }),
       h("p", { text: p.excerpt }),
       h("span", { class: "meta", text: `${p.author} · ${fmtDate(p.created_at)}` }));
+    if (position) {
+      main.addEventListener("click", () => window.track && window.track("select_content", {
+        content_type: "post", content_id: String(p.id), category: p.category, list_position: position }));
+    }
     const li = h("li", null, main);
     if (manage) {
       li.append(h("div", { class: "row-actions" },
@@ -100,6 +104,31 @@
         h("button", { class: "btn sm danger", type: "button", text: "삭제", onclick: () => onDelete(p) })));
     }
     return li;
+  }
+
+  // 글 읽기 진행(25/50/75/100%)과 읽기 완료(끝까지 + 20초 이상) 이벤트 — 관리자 본인 글은 제외
+  function trackReading(box, p) {
+    if (!window.track) return;
+    const t0 = Date.now(), sent = new Set();
+    let done = false;
+    const base = { content_id: String(p.id), category: p.category };
+    function check() {
+      const r = box.getBoundingClientRect();
+      const pct = r.bottom <= window.innerHeight + 40 ? 100 : Math.min(100, Math.max(0, ((window.innerHeight - r.top) / r.height) * 100));
+      [25, 50, 75, 100].forEach((m) => {
+        if (pct >= m && !sent.has(m)) { sent.add(m); window.track("read_progress", { ...base, percent: m }); }
+      });
+      const secs = Math.round((Date.now() - t0) / 1000);
+      if (!done && sent.has(100) && secs >= 20) {
+        done = true;
+        window.track("read_complete", { ...base, read_seconds: secs });
+        window.removeEventListener("scroll", check);
+        clearInterval(timer);
+      }
+    }
+    const timer = setInterval(check, 2000);
+    window.addEventListener("scroll", check, { passive: true });
+    check();
   }
 
   // ---------- 페이지별 ----------
@@ -116,7 +145,7 @@
         list.replaceChildren(h("li", { class: "empty", text: "불러오는 중…" }));
         try {
           const { posts } = await api("/posts" + (current ? "?category=" + encodeURIComponent(current) : ""));
-          list.replaceChildren(...(posts.length ? posts.map((p) => postCard(p)) : [h("li", { class: "empty", text: "아직 글이 없어요. 첫 글의 주인공이 되어 보세요!" })]));
+          list.replaceChildren(...(posts.length ? posts.map((p, i) => postCard(p, { position: i + 1 })) : [h("li", { class: "empty", text: "아직 글이 없어요. 첫 글의 주인공이 되어 보세요!" })]));
         } catch (e) {
           list.replaceChildren(h("li", { class: "empty", text: e.message }));
         }
@@ -124,6 +153,7 @@
       ["전체", ...CATEGORIES].forEach((c) => {
         const b = h("button", { type: "button", class: "chip", "aria-pressed": String(c === "전체"), text: c, onclick: () => {
           current = c === "전체" ? "" : c;
+          window.track && window.track("select_category", { category: c });
           chips.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
           load();
         } });
@@ -168,6 +198,7 @@
               if (!confirm("이 글을 삭제할까요? 되돌릴 수 없어요.")) return;
               try { await api("/posts/" + p.id, { method: "DELETE" }); location.href = "/me"; } catch (e) { alert(e.message); }
             } })) : null);
+        if (!p.mine) trackReading(box, p);
       } catch (e) {
         box.replaceChildren(h("p", { class: "empty", text: e.message }), h("a", { class: "btn ghost", href: "/", text: "홈으로" }));
       }
