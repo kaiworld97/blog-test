@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>든든한 노후경제 — 시니어를 위한 쉬운 경제·금융 이야기</title>
-  <meta name="description" content="연금, 예금, 세금, 부동산까지. 어려운 경제·금융 소식을 큰 글씨와 쉬운 말로 풀어드립니다.">
+  <meta name="description" content="연금, 예금, 세금, 사기 예방까지. 어려운 경제·금융 이야기를 큰 글씨와 쉬운 말로 풀어드립니다.">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="든든한 노후경제">
-  <meta property="og:description" content="어려운 경제·금융 소식을 큰 글씨와 쉬운 말로 풀어드립니다.">
+  <meta property="og:description" content="어려운 경제·금융 이야기를 큰 글씨와 쉬운 말로 풀어드립니다.">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://blog-test-a09.pages.dev/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="든든한 노후경제" href="/feed.xml">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="/styles.css">
@@ -27,11 +29,12 @@
       </div>
     </div>
     <nav class="wrap nav" aria-label="주요 메뉴">
-      <a href="#headline" aria-current="true">오늘의 소식</a>
+      <a href="#headline" aria-current="true">처음</a>
+      <a href="#numbers">핵심 숫자</a>
       <a href="#topics">주제별 보기</a>
       <a href="#latest">최신 글</a>
       <a href="#terms">경제용어</a>
-      <a href="#newsletter">뉴스레터</a>
+      <a href="#subscribe">구독</a>
     </nav>
   </header>
 
@@ -39,25 +42,26 @@
     <section class="wrap hero" id="headline">
       <p class="date" id="today">오늘</p>
       <h1>어려운 경제 이야기,<br><span>쉬운 말</span>로 풀어드려요</h1>
-      <p class="sub">연금, 예금, 세금, 부동산까지.<br class="m-br"> 꼭 알아야 할 것만 큰 글씨로 정리합니다.</p>
+      <p class="sub">연금, 예금, 세금, 사기 예방까지.<br class="m-br"> 꼭 알아야 할 것만 큰 글씨로 정리합니다.</p>
       <div class="cta">
         <a class="btn primary" href="#latest">최신 글 읽기</a>
-        <a class="btn ghost" href="#newsletter">메일로 받아보기</a>
+        <a class="btn ghost" href="#subscribe">구독하는 방법</a>
       </div>
     </section>
 
-    <section class="wrap" aria-labelledby="rates-t">
-      <h2 id="rates-t" class="label">오늘의 지표 <em>예시 데이터</em></h2>
+    <section class="wrap" id="numbers" aria-labelledby="num-t">
+      <h2 id="num-t" class="label">꼭 알아둘 숫자 <em>2026.11 기준</em></h2>
       <div class="rates">
-        <div class="rate"><span class="k">기준금리</span><b>3.00%</b><span class="d flat">변동 없음</span></div>
-        <div class="rate"><span class="k">정기예금 평균</span><b>3.15%</b><span class="d up">▲ 0.02%p</span></div>
-        <div class="rate"><span class="k">원·달러 환율</span><b>1,372원</b><span class="d down">▼ 5원</span></div>
-        <div class="rate"><span class="k">코스피</span><b>2,710</b><span class="d up">▲ 0.4%</span></div>
+        <a class="rate" href="/posts/deposit-protection.html"><span class="k">예금자보호 한도</span><b>1억 원</b><span class="d flat">금융회사별 1인당</span></a>
+        <a class="rate" href="/posts/pension-timing.html"><span class="k">국민연금 조기수령</span><b>연 6% 감액</b><span class="d flat">최대 5년, 30%까지</span></a>
+        <a class="rate" href="/posts/pension-timing.html"><span class="k">국민연금 연기수령</span><b>연 7.2% 증액</b><span class="d flat">최대 5년, 36%까지</span></a>
+        <a class="rate" href="/posts/deposit-interest.html"><span class="k">이자소득세</span><b>15.4%</b><span class="d flat">지방소득세 포함</span></a>
       </div>
+      <p class="note">제도는 바뀔 수 있어요. 결정하기 전에 해당 기관에서 최신 내용을 확인하세요.</p>
     </section>
 
     <section class="wrap">
-      <a class="feature" href="#">
+      <a class="feature" href="/posts/pension-timing.html">
         <div class="feature-text">
           <span class="pill">연금·노후</span>
           <h2>국민연금, 언제 받는 게<br>가장 유리할까요?</h2>
@@ -81,72 +85,74 @@
     <section class="wrap" id="topics">
       <h2 class="title">주제별로 찾아보기</h2>
       <div class="topics">
-        <a href="#" class="topic"><span class="ic" style="--c:#e8f3ff">🏦</span><b>연금·노후</b><span>국민·퇴직·주택연금</span></a>
-        <a href="#" class="topic"><span class="ic" style="--c:#e6f7ee">🐷</span><b>예금·저축</b><span>금리 비교와 이자 계산</span></a>
-        <a href="#" class="topic"><span class="ic" style="--c:#fff4dc">🧾</span><b>세금·절세</b><span>연말정산·증여·상속</span></a>
-        <a href="#" class="topic"><span class="ic" style="--c:#fdecee">🏠</span><b>부동산</b><span>내 집 활용 방법</span></a>
-        <a href="#" class="topic"><span class="ic" style="--c:#efeafd">🛡️</span><b>사기 예방</b><span>보이스피싱·투자사기</span></a>
+        <a href="/posts/pension-timing.html" class="topic"><span class="ic" style="--c:#e8f3ff">🏦</span><b>연금·노후</b><span>국민연금 수령 시기</span></a>
+        <a href="/posts/deposit-protection.html" class="topic"><span class="ic" style="--c:#e6f7ee">🐷</span><b>예금·저축</b><span>보호 한도와 이자 계산</span></a>
+        <a href="/posts/health-insurance-retirement.html" class="topic"><span class="ic" style="--c:#fff4dc">🧾</span><b>세금·건보</b><span>은퇴 후 건강보험료</span></a>
+        <a href="/posts/voice-phishing.html" class="topic"><span class="ic" style="--c:#efeafd">🛡️</span><b>사기 예방</b><span>보이스피싱 대처법</span></a>
       </div>
     </section>
 
     <section class="wrap" id="latest">
       <h2 class="title">최신 글</h2>
       <ul class="list">
-        <li><a href="#">
+        <li><a href="/posts/pension-timing.html">
+          <span class="pill">연금·노후</span>
+          <h3>국민연금, 언제 받는 게 가장 유리할까요?</h3>
+          <p>조기수령과 연기수령을 숫자로 비교하고, 선택 기준 세 가지를 정리했습니다.</p>
+          <span class="meta">2026.11.17 · 6분</span>
+        </a></li>
+        <li><a href="/posts/deposit-protection.html">
           <span class="pill">예금·저축</span>
-          <h3>금리가 내려갈 때, 예금은 지금 들어야 할까요</h3>
-          <p>만기와 이자 계산법을 쉬운 예시로 정리했습니다.</p>
-          <span class="meta">2026.11.15 · 5분</span>
+          <h3>예금자보호 한도 1억 원, 정확히 어떻게 적용되나요</h3>
+          <p>무엇이 보호되고 무엇이 아닌지, 쉬운 예시로 알아봅니다.</p>
+          <span class="meta">2026.11.14 · 4분</span>
         </a></li>
-        <li><a href="#">
-          <span class="pill">세금·절세</span>
-          <h3>건강보험료가 갑자기 오른 이유</h3>
-          <p>은퇴 후 보험료가 달라지는 구조와 줄이는 방법.</p>
-          <span class="meta">2026.11.12 · 4분</span>
-        </a></li>
-        <li><a href="#">
-          <span class="pill">부동산</span>
-          <h3>집 한 채로 노후 준비, 현실적인 방법들</h3>
-          <p>다운사이징, 주택연금, 임대 중 무엇이 맞을까요.</p>
-          <span class="meta">2026.11.09 · 7분</span>
-        </a></li>
-        <li><a href="#">
+        <li><a href="/posts/voice-phishing.html">
           <span class="pill">사기 예방</span>
           <h3>보이스피싱, 이 세 가지 말이 나오면 끊으세요</h3>
-          <p>가족을 사칭하는 수법의 공통점을 알아봅니다.</p>
-          <span class="meta">2026.11.05 · 3분</span>
+          <p>수법은 달라도 공통점은 같습니다. 당했을 때 대처법도 담았습니다.</p>
+          <span class="meta">2026.11.10 · 3분</span>
+        </a></li>
+        <li><a href="/posts/health-insurance-retirement.html">
+          <span class="pill">세금·건보</span>
+          <h3>은퇴하면 건강보험료는 어떻게 달라지나요</h3>
+          <p>직장을 그만두면 선택지가 세 가지로 갈립니다.</p>
+          <span class="meta">2026.11.06 · 5분</span>
+        </a></li>
+        <li><a href="/posts/deposit-interest.html">
+          <span class="pill">예금·저축</span>
+          <h3>금리가 내려갈 때 예금, 이자는 이렇게 계산합니다</h3>
+          <p>예금과 적금 이자를 직접 계산하고, 금리 하락기에 쓸 방법을 알아봅니다.</p>
+          <span class="meta">2026.11.03 · 5분</span>
         </a></li>
       </ul>
-      <a class="btn ghost wide" href="#">글 더 보기</a>
     </section>
 
     <section class="wrap" id="terms">
       <div class="term">
-        <span class="pill white">오늘의 경제용어</span>
+        <span class="pill white">쉬운 경제용어</span>
         <h2>기준금리</h2>
-        <p>한국은행이 정하는 나라의 <b>기본 이자율</b>이에요. 이게 오르내리면 은행의 예금·대출 금리도 함께 움직여요.</p>
+        <p>한국은행 금융통화위원회가 정하는 나라의 <b>기본 이자율</b>이에요. 이것이 오르내리면 은행의 예금·대출 금리도 함께 움직여요.</p>
       </div>
     </section>
 
-    <section class="wrap" id="newsletter">
-      <form class="news" id="news">
-        <h2>매주 월요일 아침,<br>핵심 소식만 보내드려요</h2>
-        <p>큰 글씨 이메일로 한 주의 경제 소식을 정리해요. 언제든 해지할 수 있어요.</p>
+    <section class="wrap" id="subscribe">
+      <div class="news">
+        <h2>새 글을 놓치지 않으려면</h2>
+        <p>이 블로그는 <b>RSS</b>로 구독할 수 있어요. 휴대전화의 RSS 리더 앱(예: Feedly)에 아래 주소를 넣으면 새 글이 올라올 때 바로 확인할 수 있습니다.</p>
         <div class="row">
-          <label class="sr" for="email">이메일 주소</label>
-          <input id="email" type="email" name="email" placeholder="이메일 주소" required autocomplete="email">
-          <button class="btn primary" type="submit">무료로 받아보기</button>
+          <input id="feedurl" type="text" readonly value="https://blog-test-a09.pages.dev/feed.xml" aria-label="RSS 주소">
+          <button class="btn primary" type="button" id="copyfeed">주소 복사</button>
         </div>
-        <p id="news-msg" role="status" class="msg"></p>
-      </form>
+        <p id="copy-msg" role="status" class="msg"></p>
+      </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap">
-      <p class="disclaimer">이 블로그의 글은 정보 제공을 위한 것이며 특정 금융상품의 매수·매도를 권유하지 않습니다. 투자와 금융 결정은 본인의 판단과 책임 아래 신중히 하세요.</p>
-      <p class="links"><a href="#">소개</a><a href="#">문의하기</a><a href="#">개인정보 처리방침</a></p>
-      <p>© <span id="y">2026</span> 든든한 노후경제</p>
+      <p class="disclaimer">이 블로그의 글은 정보 제공을 위한 것이며 특정 금융상품의 매수·매도를 권유하지 않습니다. 제도와 수치는 바뀔 수 있으니 결정 전에 해당 기관에서 최신 내용을 확인하세요.</p>
+      <p>© <span id="y">2026</span> 든든한 노후경제 · <a href="/feed.xml">RSS</a></p>
     </div>
   </footer>
   <script src="/script.js" defer></script>

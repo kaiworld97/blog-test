@@ -20,14 +20,25 @@
 
   const d = new Date();
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  document.getElementById("today").textContent =
-    `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${days[d.getDay()]}요일`;
-  document.getElementById("y").textContent = d.getFullYear();
+  const today = document.getElementById("today");
+  if (today) {
+    today.textContent = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${days[d.getDay()]}요일`;
+  }
+  const y = document.getElementById("y");
+  if (y) y.textContent = d.getFullYear();
 
-  // 구독 폼은 데모입니다. 실제 서비스(Buttondown, Formspree 등) 연결 시 교체하세요.
-  document.getElementById("news").addEventListener("submit", (e) => {
-    e.preventDefault();
-    document.getElementById("news-msg").textContent = "구독해 주셔서 감사합니다. (데모)";
-    e.target.reset();
-  });
+  const copy = document.getElementById("copyfeed");
+  if (copy) {
+    copy.addEventListener("click", async () => {
+      const input = document.getElementById("feedurl");
+      const msg = document.getElementById("copy-msg");
+      try {
+        await navigator.clipboard.writeText(input.value);
+        msg.textContent = "주소를 복사했어요.";
+      } catch {
+        input.select();
+        msg.textContent = "주소를 길게 눌러 복사해 주세요.";
+      }
+    });
+  }
 })();
