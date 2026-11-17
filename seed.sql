@@ -1,6 +1,6 @@
--- 예시 글. 'moneylog' 계정은 로그인할 수 없도록 비밀번호 해시를 무효 값으로 둡니다.
+-- 운영자 계정(admin)은 비밀번호가 비활성 상태로 만들어집니다. `npm run user` 로 비밀번호를 설정하세요.
 INSERT OR IGNORE INTO users (id, username, password_hash, salt, created_at)
-VALUES (1, 'moneylog', 'disabled', 'disabled', '2026-11-17T00:00:00.000Z');
+VALUES (1, 'admin', 'disabled', 'disabled', '2026-11-17T00:00:00.000Z');
 
 INSERT OR IGNORE INTO posts (id, user_id, title, body, category, visibility, created_at, updated_at) VALUES
 (1, 1, '첫 월급 받으면 통장부터 쪼개세요',

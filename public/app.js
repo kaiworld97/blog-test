@@ -106,10 +106,9 @@
   const pages = {
     async home() {
       const cta = $("#cta");
-      cta.append(me
-        ? h("a", { class: "btn primary", href: "/write", text: "새 글 쓰기" })
-        : h("a", { class: "btn primary", href: "/login", text: "로그인하고 글쓰기" }),
-        h("a", { class: "btn ghost", href: "#posts", text: "글 둘러보기" }));
+      cta.append(
+        h("a", { class: "btn primary", href: "#posts", text: "글 둘러보기" }),
+        me ? h("a", { class: "btn ghost", href: "/write", text: "새 글 쓰기" }) : null);
 
       const chips = $("#chips"), list = $("#list");
       let current = "";
@@ -137,22 +136,11 @@
       const next = safeNext(new URLSearchParams(location.search).get("next"));
       if (me) { location.replace(next); return; }
       const form = $("#authform"), msg = $("#msg"), submit = $("#submit");
-      let mode = "login";
-      const setMode = (m) => {
-        mode = m;
-        document.querySelectorAll("[data-mode]").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.mode === m)));
-        submit.textContent = m === "login" ? "로그인" : "가입하고 시작하기";
-        $("#pw").autocomplete = m === "login" ? "current-password" : "new-password";
-        $("#hint").hidden = m === "login";
-        msg.textContent = "";
-      };
-      document.querySelectorAll("[data-mode]").forEach((t) => t.addEventListener("click", () => setMode(t.dataset.mode)));
-      setMode("login");
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         submit.disabled = true; msg.textContent = "";
         try {
-          await api(mode === "login" ? "/auth/login" : "/auth/signup", { method: "POST", body: { username: $("#un").value, password: $("#pw").value } });
+          await api("/auth/login", { method: "POST", body: { username: $("#un").value, password: $("#pw").value } });
           location.href = next;
         } catch (err) {
           msg.textContent = err.message;
