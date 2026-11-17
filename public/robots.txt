@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /login
+Disallow: /write
+Disallow: /me
+
+Sitemap: https://blog-test-a09.pages.dev/sitemap.xml

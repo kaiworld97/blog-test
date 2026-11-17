@@ -38,6 +38,7 @@ functions/api/     API (Pages Functions)
 └─ posts/{index,[id]}.js
 lib/util.js        공용 헬퍼 (해시, 세션, 검증)
 docs/design-system.md  디자인 시스템 (색·글자·간격·컴포넌트)
+docs/user-stories.md   사용자 스토리와 인수 조건
 schema.sql         DB 스키마
 seed.sql           예시 글 3개 + 'admin' 계정(비밀번호 비활성)
 scripts/create-user.mjs  운영자 비밀번호 설정/재설정
@@ -107,3 +108,11 @@ NEW_PASSWORD=새비밀번호 npm run user -- admin --remote
 - 비밀번호 찾기 기능은 없습니다. 잊으면 위 명령으로 재설정하세요.
 - 글 목록은 최근 50개(내 글은 100개)까지만 보여줍니다. 페이지네이션은 없습니다.
 - 나만보기 글도 DB에는 평문으로 저장됩니다.
+
+## SEO · 분석(GA)
+
+- **메타 태그**: 홈은 `public/index.html`, 글 상세는 `functions/post.js`가 글마다 title·description·canonical·Open Graph·Twitter 카드·JSON-LD(BlogPosting)를 채워 응답합니다. 나만보기·없는 글은 `noindex`입니다.
+- **미리보기 이미지**: `public/og-image.png`(1200×630), `public/apple-touch-icon.png`
+- **sitemap.xml**: `functions/sitemap.xml.js`가 공개 글만 자동으로 나열합니다. `robots.txt`에서 로그인·글쓰기·내 글·API는 막습니다.
+- **GA4**: `public/analytics.js`의 `GA_ID`에 측정 ID(`G-XXXXXXXXXX`)를 넣고 재배포하면 켜집니다. 홈과 글 상세에서만 동작하고, 브라우저의 추적 금지(DNT) 설정을 따릅니다.
+- **도메인을 바꿀 때**: `lib/site.js`의 `SITE_URL`, `public/index.html`·`public/robots.txt`의 `blog-test-a09.pages.dev`를 함께 바꿉니다.
