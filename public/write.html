@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>글쓰기 — 머니로그</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="write">
+  <header class="header">
+    <div class="wrap header-in">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">M</span>머니로그</a>
+      <nav id="nav" class="nav"></nav>
+    </div>
+  </header>
+  <main id="main" class="wrap narrow">
+    <h1 id="heading" class="page-title">새 글 쓰기</h1>
+    <form id="postform" class="form card">
+      <label for="title">제목</label>
+      <input id="title" name="title" required maxlength="100" placeholder="제목을 입력하세요">
+
+      <label for="category">카테고리</label>
+      <select id="category" name="category"></select>
+
+      <fieldset class="seg">
+        <legend>공개 범위</legend>
+        <label><input type="radio" name="visibility" value="public" checked><span>🌐 공개<small>누구나 볼 수 있어요</small></span></label>
+        <label><input type="radio" name="visibility" value="private"><span>🔒 나만보기<small>나만 볼 수 있어요</small></span></label>
+      </fieldset>
+
+      <label for="body">본문</label>
+      <textarea id="body" name="body" required maxlength="20000" rows="14" placeholder="내용을 입력하세요"></textarea>
+      <p class="hint">간단한 서식: <code>## 소제목</code> · <code>- 목록</code> · <code>**굵게**</code> · 빈 줄로 문단 나누기</p>
+
+      <p id="msg" class="msg error" role="alert"></p>
+      <div class="row-actions end">
+        <a class="btn ghost" href="/me">취소</a>
+        <button id="submit" class="btn primary" type="submit">저장</button>
+      </div>
+    </form>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,3 +1,9 @@
 name = "blog-test"
 compatibility_date = "2026-11-01"
 pages_build_output_dir = "./public"
+
+# D1 데이터베이스 (로컬 개발은 ID와 상관없이 동작, 배포 시 실제 ID로 교체)
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-db"
+database_id = "123075be-7078-4507-9dcf-290ed9c249ca"
