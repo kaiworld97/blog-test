@@ -6,6 +6,7 @@
 - 백엔드: Cloudflare **Pages Functions** (`functions/`)
 - 데이터: Cloudflare **D1** (SQLite)
 - 저장소: https://github.com/kaiworld97/blog-test
+- 디자인: [docs/design-system.md](docs/design-system.md) · [디자인 시스템](https://claude.ai/artifact/SDHqqxh6dFtSqtTFb375m5) · [5개 화면 시안](https://claude.ai/artifact/FHS9C9sv8e8KEi6QUYMocA) (아티팩트 링크는 공유하기 전에는 만든 사람만 열 수 있음)
 
 ## 기능
 
@@ -36,6 +37,7 @@ functions/api/     API (Pages Functions)
 ├─ me.js
 └─ posts/{index,[id]}.js
 lib/util.js        공용 헬퍼 (해시, 세션, 검증)
+docs/design-system.md  디자인 시스템 (색·글자·간격·컴포넌트)
 schema.sql         DB 스키마
 seed.sql           예시 글 3개 + 'admin' 계정(비밀번호 비활성)
 scripts/create-user.mjs  운영자 비밀번호 설정/재설정
