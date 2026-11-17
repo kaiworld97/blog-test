@@ -1,0 +1,11 @@
+{
+  "name": "blog-test",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name blog-test"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
